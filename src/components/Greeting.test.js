@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Greeting from "./Greeting";
 
 describe("Greeting component", () => {
@@ -14,5 +15,34 @@ describe("Greeting component", () => {
       exact: false,
     });
     expect(helloWorldElement).toBeInTheDocument();
+  });
+
+  test("renders good to see you if the button was not click", () => {
+    render(<Greeting />);
+
+    const outputElement = screen.getByText("good to see you", { exact: false });
+    expect(outputElement).toBeInTheDocument();
+  });
+
+  test("renders changed! if the button was clicked", () => {
+    //Arrange
+    render(<Greeting />);
+
+    //Act
+    const buttonElement = screen.getByRole("button");
+    userEvent.click(buttonElement);
+
+    //Assert
+    const outputElement = screen.getByText("Changed!");
+    expect(outputElement).toBeInTheDocument();
+  });
+
+  test("testing for the failed case", () => {
+    render(<Greeting />);
+
+    const buttonElement = screen.queryByText("good to see you", {
+      exact: false,
+    });
+    expect(outputElement).toBeNull();
   });
 });
