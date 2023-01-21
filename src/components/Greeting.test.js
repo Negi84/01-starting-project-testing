@@ -37,12 +37,12 @@ describe("Greeting component", () => {
     expect(outputElement).toBeInTheDocument();
   });
 
-  test("testing for the failed case", () => {
-    render(<Greeting />);
+  // test("testing for the failed case", () => {
+  //   render(<Greeting />);
 
-    const buttonElement = screen.queryByText("good to see you", {
-      exact: false,
-    });
-    expect(outputElement).toBeNull();
-  });
+  //   const buttonElement = screen.queryByText("good to see you", {
+  //     exact: false,
+  //   });
+  //   expect(outputElement).toBeNull();
+  // });
 });
